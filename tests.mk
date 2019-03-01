@@ -221,7 +221,6 @@ tests-firewall: $(tests_firewall_OBJECTS)
 $(tests_firewall_OBJECTS): %.o : %.c
 	$(CC) -c $(tests_firewall_CFLAGS) $(PG_ASAN_CFLAGS) $< -o $@
 
-
 tests-all-build: tests-antispoof tests-core tests-rxtx tests-pmtud tests-ip-fragment \
 	tests-firewall tests-nic tests-print tests-queue tests-switch tests-vtep \
 	tests-tap tests-thread tests-integration tests-vhost
