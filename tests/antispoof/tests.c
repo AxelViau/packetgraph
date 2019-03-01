@@ -370,7 +370,7 @@ static void test_antispoof_arp_request(void)
 	uint32_t inside_ip;
 
 	pg_scan_ether_addr(&inside_mac, "00:e0:81:d5:02:91");
-	inside_ip = htobe32(IPv4(192, 168, 21, 253));
+	inside_ip = htobe32(IPv4((size_t)192, 168, 21, 253));
 	test_antispoof_generic(pkts, pkts_size, pkts_nb, inside_mac, inside_ip);
 }
 
@@ -384,7 +384,7 @@ static void test_antispoof_arp_response(void)
 	uint32_t inside_ip;
 
 	pg_scan_ether_addr(&inside_mac, "00:18:b9:56:2e:73");
-	inside_ip = htobe32(IPv4(192, 168, 21, 2));
+	inside_ip = htobe32(IPv4((size_t)192, 168, 21, 2));
 	test_antispoof_generic(pkts, pkts_size, pkts_nb, inside_mac, inside_ip);
 }
 
@@ -398,7 +398,7 @@ static void test_antispoof_arp_gratuitous(void)
 	uint32_t inside_ip;
 
 	pg_scan_ether_addr(&inside_mac, "00:23:df:ff:c9:23");
-	inside_ip = htobe32(IPv4(192, 168, 22, 56));
+	inside_ip = htobe32(IPv4((size_t)192, 168, 22, 56));
 	test_antispoof_generic(pkts, pkts_size, pkts_nb, inside_mac, inside_ip);
 }
 

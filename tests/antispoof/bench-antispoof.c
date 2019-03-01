@@ -48,7 +48,6 @@ void test_benchmark_antispoof(int argc, char **argv)
 	g_assert(!error);
 	pg_antispoof_arp_enable(antispoof);
 	g_assert(!pg_antispoof_arp_add(antispoof, 0x000000EE, &error));
-
 	bench.input_brick = antispoof;
 	bench.input_side = PG_WEST_SIDE;
 	bench.output_brick = antispoof;
