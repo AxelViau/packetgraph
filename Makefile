@@ -56,8 +56,8 @@ PG_HEADERS = \
 		 $(GLIB_HEADERS)
 
 PG_LIBADD = $(RTE_SDK_LIBS) $(GLIB_LIBS)
-	#FIXME '^pg_[^_]' does not take all symbols needed (i.e. __pg_error_*)
 
+	#FIXME '^pg_[^_]' does not take all symbols needed (i.e. __pg_error_*)
 PG_LDFLAGS = -version-info 17:5:0 -export-symbols-regex 'pg_[^_]' -no-undefined --export-all-symbols
 
 PG_CFLAGS = $(EXTRA_CFLAGS) -march=core-avx-i -mtune=core-avx-i -fmessage-length=0 -Werror -Wall -Wextra -Wwrite-strings -Winit-self -Wpointer-arith -Wstrict-aliasing -Wformat=2 -Wmissing-declarations -Wmissing-include-dirs -Wno-unused-parameter -Wuninitialized -Wold-style-definition -Wstrict-prototypes -Wmissing-prototypes -fPIC -std=gnu11 $(GLIB_CFLAGS) $(RTE_SDK_CFLAGS) $(PG_ASAN_CFLAGS) -Wno-implicite-fallthrough -Wno-unknown-warning-option -Wno-deprecated-declarations
@@ -109,10 +109,10 @@ clean: clean_npf testcleanobj
 	rm -fv $(PG_OBJECTS)
 	rm -fv $(PG_dev_OBJECTS)
 	rm -Rfv dev
-ifdef BENCHMARK_INCLUDED
+ifdef BENCHMARK
 	$(MAKE) benchclean
 endif
-ifdef EXAMPLE_INCLUDED
+ifdef EXAMPLE
 	$(MAKE) exampleclean
 endif
 

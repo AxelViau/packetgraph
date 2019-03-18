@@ -169,7 +169,7 @@ bench: bench_compile
 	$(srcdir)/tests/print/bench.sh
 	$(srcdir)/tests/queue/bench.sh
 	$(srcdir)/tests/switch/bench.sh
-	$(srcdir)/tests/vhost/bench.sh
+	#$(srcdir)/tests/vhost/bench.sh
 	$(srcdir)/tests/vtep/bench.sh
 	$(srcdir)/tests/rxtx/bench.sh
 	$(srcdir)/tests/pmtud/bench.sh

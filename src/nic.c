@@ -44,9 +44,15 @@ static inline int pg_rte_devargs_remove(struct rte_devargs *devargs)
 #if (RTE_VERSION_NUM(18, 5, 0, 0) > RTE_VERSION)
 #error"DPDK is too old"
 #elif (RTE_VERSION_NUM(18, 11, 0, 0) > RTE_VERSION)
-	return rte_devargs_remove(devargs->bus->name, devargs->name);
+	printf("\n===pg_devargs_remove===\n");
+	printf("%p\n", &devargs);
+	printf("\n=pg_devargs_remove=\n");
+	//return rte_devargs_remove(devargs->bus->name, devargs->name);
 #else
-	return rte_devargs_remove(devargs);
+	printf("\n===pg_devargs_remove===\n");
+	printf("%p\n", &devargs);
+	printf("\n=pg_devargs_remove=\n");
+	//return rte_devargs_remove(devargs);
 #endif
 	return -1;
 }
@@ -342,6 +348,9 @@ static int nic_init(struct pg_brick *brick, struct pg_brick_config *config,
 	/* Setup port id */
 	if (nic_config->ifname[0]) {
 		struct rte_devargs pg_cleanup(pg_rte_devargs_remove) devargs;
+		printf("\n=test=nic=\n");
+		printf("%p\n", &devargs);
+		printf("=test=nic=\n");
 
 		/* parse devargs */
 		if (rte_devargs_parse(&devargs, nic_config->ifname)) {
@@ -349,13 +358,21 @@ static int nic_init(struct pg_brick *brick, struct pg_brick_config *config,
 					     nic_config->ifname);
 			return -1;
 		}
+		printf("\n=parse=nic=\n");
+		printf("%p\n", &devargs);
+		printf("=parse=nic=\n");
 
 		if (rte_eal_hotplug_add(devargs.bus->name, devargs.name,
 					 devargs.args) < 0) {
 			*errp = pg_error_new("Unable to hot plugging %s",
 					     devargs.args);
+			//g_free(devargs.args);
 			return -1;
 		}
+		printf("\n=nic=\n");
+		printf("%s\t%p\t%p\n", devargs.args, devargs.args, &devargs);
+		printf("=nic=\n");
+		//g_free(devargs.args);
 		if (rte_eth_dev_get_port_by_name(devargs.name,
 						 &state->portid) < 0) {
 			*errp = pg_error_new("Unable to get device %s",
